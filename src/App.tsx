@@ -220,7 +220,7 @@ function EnhanceModelSection({ title, description, samples, gradient }: {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <AudioCard label="Antes" src={sample.before} variant="before" />
-              <AudioCard label="Resemble Enhance" src={sample.enhanced} variant="enhance" />
+              <AudioCard label="" src={sample.enhanced} variant="enhance" />
             </div>
           </div>
         ))}
