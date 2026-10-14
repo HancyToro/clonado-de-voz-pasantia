@@ -20,20 +20,25 @@ jobs:
         with:
           node-version: '20'
           
-      - name: Clean install dependencies
+      - name: Install dependencies
         run: |
           rm -rf node_modules package-lock.json
           npm install --force
+          npm rebuild
           
-      - name: Rebuild native modules
-        run: npm rebuild
-        
       - name: Build
         run: npm run build
         
-      - name: Deploy to GitHub Pages
+      - name: Verify build output
+        run: |
+          ls -la dist/
+          ls -la dist/assets/
+          echo "Checking if audios are included..."
+          ls -la dist/audios/ || echo "No audios folder found"
+        
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: gh-pages
+          keep_files: false
