@@ -6,8 +6,10 @@ type Section = 'ruido' | 'clonados' | 'mejorados' | 'audiolibro' | null
 // COMPONENTES REUTILIZABLES
 // ============================================
 
-function AudioCard({ label, src, variant }: { label: string; src: string; variant: 'before' | 'after' | 'reference' | 'enhance' }) {
-  const variantStyles = {
+type AudioVariant = 'before' | 'after' | 'reference' | 'enhance' | 'source' | 'target' | 'cloned'
+
+function AudioCard({ label, src, variant }: { label: string; src: string; variant: AudioVariant }) {
+  const variantStyles: Record<AudioVariant, { bg: string; badge: string }> = {
     before: {
       bg: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
       badge: 'bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200',
@@ -16,7 +18,6 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
       bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
       badge: 'bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200',
     },
-    // alias para "Audio mejorado"
     reference: {
       bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
       badge: 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200',
@@ -25,9 +26,21 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
       bg: 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800',
       badge: 'bg-amber-100 dark:bg-amber-800 text-amber-700 dark:text-amber-200',
     },
+    source: {
+      bg: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
+      badge: 'bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-200',
+    },
+    target: {
+      bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
+      badge: 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200',
+    },
+    cloned: {
+      bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
+      badge: 'bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200',
+    },
   }
 
-  const icons = {
+  const icons: Record<AudioVariant, React.ReactNode> = {
     before: (
       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -48,13 +61,31 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
       </svg>
     ),
+    source: (
+      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+      </svg>
+    ),
+    target: (
+      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+      </svg>
+    ),
+    cloned: (
+      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
   }
 
-  const labels = {
+  const labels: Record<AudioVariant, string> = {
     before: 'Antes',
     after: 'Mejorado',
     reference: 'Referencia',
-    enhance: 'Resemble Enhance',
+    enhance: '',
+    source: 'Fuente',
+    target: 'Objetivo',
+    cloned: 'Voz clonada',
   }
 
   const style = variantStyles[variant]
@@ -62,10 +93,12 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
   return (
     <div className={`rounded-xl p-4 border-2 ${style.bg}`}>
       <div className="flex items-center gap-2 mb-3">
-        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${style.badge}`}>
-          {icons[variant]}
-          {labels[variant]}
-        </span>
+        {labels[variant] && (
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${style.badge}`}>
+            {icons[variant]}
+            {labels[variant]}
+          </span>
+        )}
         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
       </div>
       <audio controls className="w-full h-10">
@@ -144,9 +177,9 @@ function CloneModelSection({ title, description, samples, gradient }: {
               Muestra {idx + 1}: {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <AudioCard label="Fuente" src={sample.before} variant="before" />
-              <AudioCard label="Objetivo" src={sample.reference} variant="reference" />
-              <AudioCard label="Voz clonada" src={sample.cloned} variant="after" />
+              <AudioCard label="Fuente" src={sample.before} variant="source" />
+              <AudioCard label="Objetivo" src={sample.reference} variant="target" />
+              <AudioCard label="Voz clonada" src={sample.cloned} variant="cloned" />
             </div>
           </div>
         ))}
@@ -184,7 +217,7 @@ function EnhanceModelSection({ title, description, samples, gradient }: {
               Muestra {idx + 1}: {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <AudioCard label="Antes de mejora" src={sample.before} variant="before" />
+              <AudioCard label="Antes" src={sample.before} variant="before" />
               <AudioCard label="Resemble Enhance" src={sample.enhanced} variant="enhance" />
             </div>
           </div>
@@ -217,18 +250,18 @@ export default function App() {
       color: 'from-purple-500 to-pink-500',
     },
     {
-      id: 'mejorados',
-      label: 'Audios Clonados Mejorados',
-      icon: '✨',
-      description: 'Audios clonados con mejoras aplicadas para mayor naturalidad y calidad.',
-      color: 'from-amber-500 to-orange-500',
-    },
-    {
       id: 'audiolibro',
       label: 'Audiolibro Clonado',
       icon: '📖',
       description: 'Clonación de voz aplicada a audiolibros con modelos de IA.',
       color: 'from-emerald-500 to-teal-500',
+    },
+    {
+      id: 'mejorados',
+      label: 'Audios Clonados Mejorados',
+      icon: '✨',
+      description: 'Audios clonados con mejoras aplicadas para mayor naturalidad y calidad.',
+      color: 'from-amber-500 to-orange-500',
     },
   ]
 
@@ -447,34 +480,6 @@ export default function App() {
         )}
 
         {/* ============================================ */}
-        {/* SECCIÓN: AUDIOS CLONADOS MEJORADOS */}
-        {/* ============================================ */}
-        {activeSection === 'mejorados' && (
-          <div className="animate-fadeIn">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-              <div className="px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500">
-                <h2 className="text-xl font-bold text-white flex items-center gap-3">
-                  <span className="text-2xl">✨</span>
-                  Audios Clonados Mejorados
-                </h2>
-                <p className="text-amber-100 text-sm mt-1">
-                  Audios clonados con mejoras de naturalidad usando Resemble Enhance
-                </p>
-              </div>
-
-              <div className="p-6 md:p-8">
-                <EnhanceModelSection
-                  title="Resemble Enhance"
-                  description="Mejora de audio clonado con Resemble Enhance"
-                  samples={enhancedSamples}
-                  gradient="from-amber-500 to-orange-600"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ============================================ */}
         {/* SECCIÓN: AUDIOLIBRO CLONADO */}
         {/* ============================================ */}
         {activeSection === 'audiolibro' && (
@@ -496,6 +501,34 @@ export default function App() {
                   description="Clonación de voz aplicada a audiolibros"
                   samples={audiobookSamples}
                   gradient="from-emerald-500 to-teal-600"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ============================================ */}
+        {/* SECCIÓN: AUDIOS CLONADOS MEJORADOS */}
+        {/* ============================================ */}
+        {activeSection === 'mejorados' && (
+          <div className="animate-fadeIn">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <div className="px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500">
+                <h2 className="text-xl font-bold text-white flex items-center gap-3">
+                  <span className="text-2xl">✨</span>
+                  Audios Clonados Mejorados
+                </h2>
+                <p className="text-amber-100 text-sm mt-1">
+                  Audios clonados con mejoras de naturalidad usando Resemble Enhance
+                </p>
+              </div>
+
+              <div className="p-6 md:p-8">
+                <EnhanceModelSection
+                  title="Resemble Enhance"
+                  description="Mejora de audio clonado con Resemble Enhance"
+                  samples={enhancedSamples}
+                  gradient="from-amber-500 to-orange-600"
                 />
               </div>
             </div>
