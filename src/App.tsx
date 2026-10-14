@@ -1,10 +1,6 @@
 import { useState } from 'react'
 
-type Section = 'ruido' | 'clonados' | 'mejorados' | 'audiolibro' | null
-
-// ============================================
-// COMPONENTES REUTILIZABLES
-// ============================================
+type Section = 'ruido' | 'clonados' | 'audiolibro' | 'mejorados' | null
 
 type AudioVariant = 'before' | 'after' | 'reference' | 'enhance' | 'source' | 'target' | 'cloned'
 
@@ -111,7 +107,6 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
   )
 }
 
-// Componente para las secciones de reducción de ruido (antes/después)
 function NoiseModelSection({ title, description, samples, gradient }: {
   title: string;
   description: string;
@@ -150,7 +145,6 @@ function NoiseModelSection({ title, description, samples, gradient }: {
   )
 }
 
-// Componente para las secciones de clonación (antes / referencia / clonado)
 function CloneModelSection({ title, description, samples, gradient }: {
   title: string;
   description: string;
@@ -176,12 +170,12 @@ function CloneModelSection({ title, description, samples, gradient }: {
               <span className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center text-xs font-bold">
                 {idx + 1}
               </span>
-              Muestra {idx + 1}: {sample.name}
+              {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <AudioCard label="Fuente" src={sample.before} variant="source" />
-              <AudioCard label="Objetivo" src={sample.reference} variant="target" />
-              <AudioCard label="Voz clonada" src={sample.cloned} variant="cloned" />
+              <AudioCard label="" src={sample.before} variant="source" />
+              <AudioCard label="" src={sample.reference} variant="target" />
+              <AudioCard label="" src={sample.cloned} variant="cloned" />
             </div>
           </div>
         ))}
@@ -190,7 +184,6 @@ function CloneModelSection({ title, description, samples, gradient }: {
   )
 }
 
-// Componente para audios mejorados (antes / resemble enhance)
 function EnhanceModelSection({ title, description, samples, gradient }: {
   title: string;
   description: string;
@@ -216,10 +209,10 @@ function EnhanceModelSection({ title, description, samples, gradient }: {
               <span className="w-6 h-6 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-600 dark:text-amber-300 flex items-center justify-center text-xs font-bold">
                 {idx + 1}
               </span>
-              Muestra {idx + 1}: {sample.name}
+              {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <AudioCard label="Antes" src={sample.before} variant="before" />
+              <AudioCard label="" src={sample.before} variant="before" />
               <AudioCard label="" src={sample.enhanced} variant="enhance" />
             </div>
           </div>
@@ -228,10 +221,6 @@ function EnhanceModelSection({ title, description, samples, gradient }: {
     </div>
   )
 }
-
-// ============================================
-// COMPONENTE PRINCIPAL
-// ============================================
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<Section>(null)
@@ -267,53 +256,42 @@ export default function App() {
     },
   ]
 
-  // ============================================
-  // DATOS DE AUDIOS
-  // ============================================
-
-  // Reducción de ruido - Noise2Noise
   const noise2noiseSamples = [
     { name: 'Muestra 1', before: '/audios/noise2noise/sample1_before.wav', after: '/audios/noise2noise/sample1_after.wav' },
     { name: 'Muestra 2', before: '/audios/noise2noise/sample2_before.wav', after: '/audios/noise2noise/sample2_after.wav' },
     { name: 'Muestra 3', before: '/audios/noise2noise/sample3_before.wav', after: '/audios/noise2noise/sample3_after.wav' },
   ]
 
-  // Reducción de ruido - ClearVoiceStudio
   const clearVoiceSamples = [
     { name: 'Muestra 1', before: '/audios/clearvoice/sample1_before.wav', after: '/audios/clearvoice/sample1_after.wav' },
     { name: 'Muestra 2', before: '/audios/clearvoice/sample2_before.wav', after: '/audios/clearvoice/sample2_after.wav' },
     { name: 'Muestra 3', before: '/audios/clearvoice/sample3_before.wav', after: '/audios/clearvoice/sample3_after.wav' },
   ]
 
-  // Audios Clonados - AGAIN-VC
   const againVcSamples = [
     { name: 'Muestra 1', before: '/audios/clonados/again-vc/sample1_before.wav', reference: '/audios/clonados/again-vc/sample1_reference.wav', cloned: '/audios/clonados/again-vc/sample1_cloned.wav' },
     { name: 'Muestra 2', before: '/audios/clonados/again-vc/sample2_before.wav', reference: '/audios/clonados/again-vc/sample2_reference.wav', cloned: '/audios/clonados/again-vc/sample2_cloned.wav' },
     { name: 'Muestra 3', before: '/audios/clonados/again-vc/sample3_before.wav', reference: '/audios/clonados/again-vc/sample3_reference.wav', cloned: '/audios/clonados/again-vc/sample3_cloned.wav' },
   ]
 
-  // Audios Clonados - StarGAN VC
   const starganVcSamples = [
     { name: 'Muestra 1', before: '/audios/clonados/stargan-vc/sample1_before.wav', reference: '/audios/clonados/stargan-vc/sample1_reference.wav', cloned: '/audios/clonados/stargan-vc/sample1_cloned.wav' },
     { name: 'Muestra 2', before: '/audios/clonados/stargan-vc/sample2_before.wav', reference: '/audios/clonados/stargan-vc/sample2_reference.wav', cloned: '/audios/clonados/stargan-vc/sample2_cloned.wav' },
     { name: 'Muestra 3', before: '/audios/clonados/stargan-vc/sample3_before.wav', reference: '/audios/clonados/stargan-vc/sample3_reference.wav', cloned: '/audios/clonados/stargan-vc/sample3_cloned.wav' },
   ]
 
-  // Audios Clonados - Seed VC
   const seedVcSamples = [
     { name: 'Muestra 1', before: '/audios/clonados/seed-vc/sample1_before.wav', reference: '/audios/clonados/seed-vc/sample1_reference.wav', cloned: '/audios/clonados/seed-vc/sample1_cloned.wav' },
     { name: 'Muestra 2', before: '/audios/clonados/seed-vc/sample2_before.wav', reference: '/audios/clonados/seed-vc/sample2_reference.wav', cloned: '/audios/clonados/seed-vc/sample2_cloned.wav' },
     { name: 'Muestra 3', before: '/audios/clonados/seed-vc/sample3_before.wav', reference: '/audios/clonados/seed-vc/sample3_reference.wav', cloned: '/audios/clonados/seed-vc/sample3_cloned.wav' },
   ]
 
-  // Audios Clonados Mejorados - Resemble Enhance
   const enhancedSamples = [
     { name: 'Muestra 1', before: '/audios/mejorados/sample1_before.wav', enhanced: '/audios/mejorados/sample1_enhanced.wav' },
     { name: 'Muestra 2', before: '/audios/mejorados/sample2_before.wav', enhanced: '/audios/mejorados/sample2_enhanced.wav' },
     { name: 'Muestra 3', before: '/audios/mejorados/sample3_before.wav', enhanced: '/audios/mejorados/sample3_enhanced.wav' },
   ]
 
-  // Audiolibro Clonado
   const audiobookSamples = [
     { name: 'Fragmento 1', before: '/audios/audiolibro/sample1_before.wav', reference: '/audios/audiolibro/sample1_reference.wav', cloned: '/audios/audiolibro/sample1_cloned.wav' },
     { name: 'Fragmento 2', before: '/audios/audiolibro/sample2_before.wav', reference: '/audios/audiolibro/sample2_reference.wav', cloned: '/audios/audiolibro/sample2_cloned.wav' },
@@ -322,7 +300,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Header */}
       <header className="pt-16 pb-12 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight">
@@ -335,9 +312,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 pb-16">
-        {/* Buttons Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
           {buttons.map((btn) => (
             <button
@@ -349,23 +324,14 @@ export default function App() {
                   : 'shadow-lg hover:shadow-xl'
               } bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700`}
             >
-              {/* Gradient accent */}
               <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${btn.color}`}></div>
-
-              {/* Icon */}
               <div className="text-3xl mb-3">{btn.icon}</div>
-
-              {/* Label */}
               <h3 className="text-base font-bold text-gray-900 dark:text-white mb-1.5">
                 {btn.label}
               </h3>
-
-              {/* Description */}
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
                 {btn.description}
               </p>
-
-              {/* Arrow indicator */}
               <div className={`mt-3 flex items-center text-xs font-medium transition-colors ${
                 activeSection === btn.id ? 'text-blue-600' : 'text-gray-400 group-hover:text-blue-500'
               }`}>
@@ -383,9 +349,6 @@ export default function App() {
           ))}
         </div>
 
-        {/* ============================================ */}
-        {/* SECCIÓN: REDUCCIÓN DE RUIDO */}
-        {/* ============================================ */}
         {activeSection === 'ruido' && (
           <div className="animate-fadeIn">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -398,9 +361,7 @@ export default function App() {
                   Comparación de audios antes y después de pasar por los modelos de IA
                 </p>
               </div>
-
               <div className="p-6 md:p-8">
-                {/* Noise2Noise */}
                 <div className="mb-10">
                   <NoiseModelSection
                     title="Noise2Noise"
@@ -409,10 +370,7 @@ export default function App() {
                     gradient="from-blue-500 to-indigo-600"
                   />
                 </div>
-
                 <div className="border-t border-gray-200 dark:border-gray-700 my-8"></div>
-
-                {/* ClearVoiceStudio */}
                 <div>
                   <NoiseModelSection
                     title="ClearVoiceStudio"
@@ -426,9 +384,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ============================================ */}
-        {/* SECCIÓN: AUDIOS CLONADOS */}
-        {/* ============================================ */}
         {activeSection === 'clonados' && (
           <div className="animate-fadeIn">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -441,9 +396,7 @@ export default function App() {
                   Comparación entre modelos: audio original, voz de referencia y resultado clonado
                 </p>
               </div>
-
               <div className="p-6 md:p-8">
-                {/* AGAIN-VC */}
                 <div className="mb-10">
                   <CloneModelSection
                     title="AGAIN-VC"
@@ -452,10 +405,7 @@ export default function App() {
                     gradient="from-violet-500 to-purple-600"
                   />
                 </div>
-
                 <div className="border-t border-gray-200 dark:border-gray-700 my-8"></div>
-
-                {/* StarGAN VC */}
                 <div className="mb-10">
                   <CloneModelSection
                     title="StarGAN VC"
@@ -464,10 +414,7 @@ export default function App() {
                     gradient="from-pink-500 to-rose-600"
                   />
                 </div>
-
                 <div className="border-t border-gray-200 dark:border-gray-700 my-8"></div>
-
-                {/* Seed VC */}
                 <div>
                   <CloneModelSection
                     title="Seed VC"
@@ -481,9 +428,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ============================================ */}
-        {/* SECCIÓN: AUDIOLIBRO CLONADO */}
-        {/* ============================================ */}
         {activeSection === 'audiolibro' && (
           <div className="animate-fadeIn">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -496,7 +440,6 @@ export default function App() {
                   Clonación de voz aplicada a fragmentos de audiolibros
                 </p>
               </div>
-
               <div className="p-6 md:p-8">
                 <CloneModelSection
                   title="Audiolibro Clonado"
@@ -509,9 +452,6 @@ export default function App() {
           </div>
         )}
 
-        {/* ============================================ */}
-        {/* SECCIÓN: AUDIOS CLONADOS MEJORADOS */}
-        {/* ============================================ */}
         {activeSection === 'mejorados' && (
           <div className="animate-fadeIn">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -524,7 +464,6 @@ export default function App() {
                   Audios clonados con mejoras de naturalidad usando Resemble Enhance
                 </p>
               </div>
-
               <div className="p-6 md:p-8">
                 <EnhanceModelSection
                   title="Resemble Enhance"
@@ -538,7 +477,6 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-700 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
         <p>© 2026 — Audios Demos</p>
       </footer>
