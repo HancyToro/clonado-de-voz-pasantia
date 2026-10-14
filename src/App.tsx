@@ -256,46 +256,48 @@ export default function App() {
     },
   ]
 
+  const BASE_URL = '/clonado-de-voz-pasantia'
+
   const noise2noiseSamples = [
-    { name: 'Muestra 1', before: '/audios/noise2noise/sample1_before.wav', after: '/audios/noise2noise/sample1_after.wav' },
-    { name: 'Muestra 2', before: '/audios/noise2noise/sample2_before.wav', after: '/audios/noise2noise/sample2_after.wav' },
-    { name: 'Muestra 3', before: '/audios/noise2noise/sample3_before.wav', after: '/audios/noise2noise/sample3_after.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/noise2noise/sample1_before.wav`, after: `${BASE_URL}/audios/noise2noise/sample1_after.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/noise2noise/sample2_before.wav`, after: `${BASE_URL}/audios/noise2noise/sample2_after.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/noise2noise/sample3_before.wav`, after: `${BASE_URL}/audios/noise2noise/sample3_after.wav` },
   ]
 
   const clearVoiceSamples = [
-    { name: 'Muestra 1', before: '/audios/clearvoice/sample1_before.wav', after: '/audios/clearvoice/sample1_after.wav' },
-    { name: 'Muestra 2', before: '/audios/clearvoice/sample2_before.wav', after: '/audios/clearvoice/sample2_after.wav' },
-    { name: 'Muestra 3', before: '/audios/clearvoice/sample3_before.wav', after: '/audios/clearvoice/sample3_after.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/clearvoice/sample1_before.wav`, after: `${BASE_URL}/audios/clearvoice/sample1_after.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/clearvoice/sample2_before.wav`, after: `${BASE_URL}/audios/clearvoice/sample2_after.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/clearvoice/sample3_before.wav`, after: `${BASE_URL}/audios/clearvoice/sample3_after.wav` },
   ]
 
   const againVcSamples = [
-    { name: 'Muestra 1', before: '/audios/clonados/again-vc/sample1_before.wav', reference: '/audios/clonados/again-vc/sample1_reference.wav', cloned: '/audios/clonados/again-vc/sample1_cloned.wav' },
-    { name: 'Muestra 2', before: '/audios/clonados/again-vc/sample2_before.wav', reference: '/audios/clonados/again-vc/sample2_reference.wav', cloned: '/audios/clonados/again-vc/sample2_cloned.wav' },
-    { name: 'Muestra 3', before: '/audios/clonados/again-vc/sample3_before.wav', reference: '/audios/clonados/again-vc/sample3_reference.wav', cloned: '/audios/clonados/again-vc/sample3_cloned.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/clonados/again-vc/sample1_before.wav`, reference: `${BASE_URL}/audios/clonados/again-vc/sample1_reference.wav`, cloned: `${BASE_URL}/audios/clonados/again-vc/sample1_cloned.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/clonados/again-vc/sample2_before.wav`, reference: `${BASE_URL}/audios/clonados/again-vc/sample2_reference.wav`, cloned: `${BASE_URL}/audios/clonados/again-vc/sample2_cloned.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/clonados/again-vc/sample3_before.wav`, reference: `${BASE_URL}/audios/clonados/again-vc/sample3_reference.wav`, cloned: `${BASE_URL}/audios/clonados/again-vc/sample3_cloned.wav` },
   ]
 
   const starganVcSamples = [
-    { name: 'Muestra 1', before: '/audios/clonados/stargan-vc/sample1_before.wav', reference: '/audios/clonados/stargan-vc/sample1_reference.wav', cloned: '/audios/clonados/stargan-vc/sample1_cloned.wav' },
-    { name: 'Muestra 2', before: '/audios/clonados/stargan-vc/sample2_before.wav', reference: '/audios/clonados/stargan-vc/sample2_reference.wav', cloned: '/audios/clonados/stargan-vc/sample2_cloned.wav' },
-    { name: 'Muestra 3', before: '/audios/clonados/stargan-vc/sample3_before.wav', reference: '/audios/clonados/stargan-vc/sample3_reference.wav', cloned: '/audios/clonados/stargan-vc/sample3_cloned.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/clonados/stargan-vc/sample1_before.wav`, reference: `${BASE_URL}/audios/clonados/stargan-vc/sample1_reference.wav`, cloned: `${BASE_URL}/audios/clonados/stargan-vc/sample1_cloned.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/clonados/stargan-vc/sample2_before.wav`, reference: `${BASE_URL}/audios/clonados/stargan-vc/sample2_reference.wav`, cloned: `${BASE_URL}/audios/clonados/stargan-vc/sample2_cloned.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/clonados/stargan-vc/sample3_before.wav`, reference: `${BASE_URL}/audios/clonados/stargan-vc/sample3_reference.wav`, cloned: `${BASE_URL}/audios/clonados/stargan-vc/sample3_cloned.wav` },
   ]
 
   const seedVcSamples = [
-    { name: 'Muestra 1', before: '/audios/clonados/seed-vc/sample1_before.wav', reference: '/audios/clonados/seed-vc/sample1_reference.wav', cloned: '/audios/clonados/seed-vc/sample1_cloned.wav' },
-    { name: 'Muestra 2', before: '/audios/clonados/seed-vc/sample2_before.wav', reference: '/audios/clonados/seed-vc/sample2_reference.wav', cloned: '/audios/clonados/seed-vc/sample2_cloned.wav' },
-    { name: 'Muestra 3', before: '/audios/clonados/seed-vc/sample3_before.wav', reference: '/audios/clonados/seed-vc/sample3_reference.wav', cloned: '/audios/clonados/seed-vc/sample3_cloned.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/clonados/seed-vc/sample1_before.wav`, reference: `${BASE_URL}/audios/clonados/seed-vc/sample1_reference.wav`, cloned: `${BASE_URL}/audios/clonados/seed-vc/sample1_cloned.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/clonados/seed-vc/sample2_before.wav`, reference: `${BASE_URL}/audios/clonados/seed-vc/sample2_reference.wav`, cloned: `${BASE_URL}/audios/clonados/seed-vc/sample2_cloned.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/clonados/seed-vc/sample3_before.wav`, reference: `${BASE_URL}/audios/clonados/seed-vc/sample3_reference.wav`, cloned: `${BASE_URL}/audios/clonados/seed-vc/sample3_cloned.wav` },
   ]
 
   const enhancedSamples = [
-    { name: 'Muestra 1', before: '/audios/mejorados/sample1_before.wav', enhanced: '/audios/mejorados/sample1_enhanced.wav' },
-    { name: 'Muestra 2', before: '/audios/mejorados/sample2_before.wav', enhanced: '/audios/mejorados/sample2_enhanced.wav' },
-    { name: 'Muestra 3', before: '/audios/mejorados/sample3_before.wav', enhanced: '/audios/mejorados/sample3_enhanced.wav' },
+    { name: 'Muestra 1', before: `${BASE_URL}/audios/mejorados/sample1_before.wav`, enhanced: `${BASE_URL}/audios/mejorados/sample1_enhanced.wav` },
+    { name: 'Muestra 2', before: `${BASE_URL}/audios/mejorados/sample2_before.wav`, enhanced: `${BASE_URL}/audios/mejorados/sample2_enhanced.wav` },
+    { name: 'Muestra 3', before: `${BASE_URL}/audios/mejorados/sample3_before.wav`, enhanced: `${BASE_URL}/audios/mejorados/sample3_enhanced.wav` },
   ]
 
   const audiobookSamples = [
-    { name: 'Fragmento 1', before: '/audios/audiolibro/sample1_before.wav', reference: '/audios/audiolibro/sample1_reference.wav', cloned: '/audios/audiolibro/sample1_cloned.wav' },
-    { name: 'Fragmento 2', before: '/audios/audiolibro/sample2_before.wav', reference: '/audios/audiolibro/sample2_reference.wav', cloned: '/audios/audiolibro/sample2_cloned.wav' },
-    { name: 'Fragmento 3', before: '/audios/audiolibro/sample3_before.wav', reference: '/audios/audiolibro/sample3_reference.wav', cloned: '/audios/audiolibro/sample3_cloned.wav' },
+    { name: 'Fragmento 1', before: `${BASE_URL}/audios/audiolibro/sample1_before.wav`, reference: `${BASE_URL}/audios/audiolibro/sample1_reference.wav`, cloned: `${BASE_URL}/audios/audiolibro/sample1_cloned.wav` },
+    { name: 'Fragmento 2', before: `${BASE_URL}/audios/audiolibro/sample2_before.wav`, reference: `${BASE_URL}/audios/audiolibro/sample2_reference.wav`, cloned: `${BASE_URL}/audios/audiolibro/sample2_cloned.wav` },
+    { name: 'Fragmento 3', before: `${BASE_URL}/audios/audiolibro/sample3_before.wav`, reference: `${BASE_URL}/audios/audiolibro/sample3_reference.wav`, cloned: `${BASE_URL}/audios/audiolibro/sample3_cloned.wav` },
   ]
 
   return (
