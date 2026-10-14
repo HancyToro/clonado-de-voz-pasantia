@@ -540,7 +540,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-700 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
-        <p>© 2024 — Audios Demos</p>
+        <p>© 2026 — Audios Demos</p>
       </footer>
     </div>
   )
