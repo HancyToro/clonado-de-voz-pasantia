@@ -82,7 +82,7 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
     before: 'Audio con ruido',
     after: 'Audio mejorado',
     reference: 'Referencia',
-    enhance: '',
+    enhance: 'Resemble Enhance',
     source: 'Fuente',
     target: 'Objetivo',
     cloned: 'Voz clonada',
@@ -99,7 +99,7 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
             {labels[variant]}
           </span>
         )}
-        {(variant !== 'before' && variant !== 'after') && (
+        {(variant !== 'before' && variant !== 'after' && variant !== 'source' && variant !== 'target' && variant !== 'cloned') && (
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
         )}
       </div>
