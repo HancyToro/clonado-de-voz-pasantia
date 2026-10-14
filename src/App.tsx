@@ -79,10 +79,10 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
   }
 
   const labels: Record<AudioVariant, string> = {
-    before: 'Antes',
-    after: 'Mejorado',
+    before: 'Audio con ruido',
+    after: 'Audio mejorado',
     reference: 'Referencia',
-    enhance: '',
+    enhance: 'Resemble Enhance',
     source: 'Fuente',
     target: 'Objetivo',
     cloned: 'Voz clonada',
@@ -99,7 +99,9 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
             {labels[variant]}
           </span>
         )}
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
+        {(variant !== 'before' && variant !== 'after' && variant !== 'source' && variant !== 'target' && variant !== 'cloned') && (
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
+        )}
       </div>
       <audio controls className="w-full h-10">
         <source src={src} type="audio/wav" />
@@ -135,11 +137,11 @@ function NoiseModelSection({ title, description, samples, gradient }: {
               <span className="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-xs font-bold">
                 {idx + 1}
               </span>
-              Muestra {idx + 1}: {sample.name}
+              {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <AudioCard label="Audio con ruido" src={sample.before} variant="before" />
-              <AudioCard label="Audio mejorado" src={sample.after} variant="after" />
+              <AudioCard label="" src={sample.before} variant="before" />
+              <AudioCard label="" src={sample.after} variant="after" />
             </div>
           </div>
         ))}
@@ -218,7 +220,7 @@ function EnhanceModelSection({ title, description, samples, gradient }: {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <AudioCard label="Antes" src={sample.before} variant="before" />
-              <AudioCard label="Resemble Enhance" src={sample.enhanced} variant="enhance" />
+              <AudioCard label="" src={sample.enhanced} variant="enhance" />
             </div>
           </div>
         ))}
@@ -271,16 +273,16 @@ export default function App() {
 
   // Reducción de ruido - Noise2Noise
   const noise2noiseSamples = [
-    { name: 'Voz masculina', before: '/audios/noise2noise/sample1_before.wav', after: '/audios/noise2noise/sample1_after.wav' },
-    { name: 'Voz femenina', before: '/audios/noise2noise/sample2_before.wav', after: '/audios/noise2noise/sample2_after.wav' },
-    { name: 'Voz en ambiente ruidoso', before: '/audios/noise2noise/sample3_before.wav', after: '/audios/noise2noise/sample3_after.wav' },
+    { name: 'Muestra 1', before: '/audios/noise2noise/sample1_before.wav', after: '/audios/noise2noise/sample1_after.wav' },
+    { name: 'Muestra 2', before: '/audios/noise2noise/sample2_before.wav', after: '/audios/noise2noise/sample2_after.wav' },
+    { name: 'Muestra 3', before: '/audios/noise2noise/sample3_before.wav', after: '/audios/noise2noise/sample3_after.wav' },
   ]
 
   // Reducción de ruido - ClearVoiceStudio
   const clearVoiceSamples = [
-    { name: 'Voz masculina', before: '/audios/clearvoice/sample1_before.wav', after: '/audios/clearvoice/sample1_after.wav' },
-    { name: 'Voz femenina', before: '/audios/clearvoice/sample2_before.wav', after: '/audios/clearvoice/sample2_after.wav' },
-    { name: 'Voz en ambiente ruidoso', before: '/audios/clearvoice/sample3_before.wav', after: '/audios/clearvoice/sample3_after.wav' },
+    { name: 'Muestra 1', before: '/audios/clearvoice/sample1_before.wav', after: '/audios/clearvoice/sample1_after.wav' },
+    { name: 'Muestra 2', before: '/audios/clearvoice/sample2_before.wav', after: '/audios/clearvoice/sample2_after.wav' },
+    { name: 'Muestra 3', before: '/audios/clearvoice/sample3_before.wav', after: '/audios/clearvoice/sample3_after.wav' },
   ]
 
   // Audios Clonados - AGAIN-VC
@@ -538,7 +540,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-700 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
-        <p>© 2024 — Audios Demos</p>
+        <p>© 2026 — Audios Demos</p>
       </footer>
     </div>
   )
