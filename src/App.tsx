@@ -16,6 +16,7 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
       bg: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
       badge: 'bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200',
     },
+    // alias para "Audio mejorado"
     reference: {
       bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
       badge: 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200',
@@ -51,7 +52,7 @@ function AudioCard({ label, src, variant }: { label: string; src: string; varian
 
   const labels = {
     before: 'Antes',
-    after: 'Después',
+    after: 'Mejorado',
     reference: 'Referencia',
     enhance: 'Resemble Enhance',
   }
@@ -105,7 +106,7 @@ function NoiseModelSection({ title, description, samples, gradient }: {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <AudioCard label="Audio con ruido" src={sample.before} variant="before" />
-              <AudioCard label="Audio procesado" src={sample.after} variant="after" />
+              <AudioCard label="Audio mejorado" src={sample.after} variant="after" />
             </div>
           </div>
         ))}
@@ -143,9 +144,9 @@ function CloneModelSection({ title, description, samples, gradient }: {
               Muestra {idx + 1}: {sample.name}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <AudioCard label="Antes de clonar" src={sample.before} variant="before" />
-              <AudioCard label="Voz referencia" src={sample.reference} variant="reference" />
-              <AudioCard label="Audio clonado" src={sample.cloned} variant="after" />
+              <AudioCard label="Fuente" src={sample.before} variant="before" />
+              <AudioCard label="Objetivo" src={sample.reference} variant="reference" />
+              <AudioCard label="Voz clonada" src={sample.cloned} variant="after" />
             </div>
           </div>
         ))}
@@ -366,20 +367,9 @@ export default function App() {
               <div className="p-6 md:p-8">
                 {/* Noise2Noise */}
                 <div className="mb-10">
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Noise2Noise</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Modelo de reducción de ruido basado en aprendizaje profundo</p>
-                    </div>
-                  </div>
                   <NoiseModelSection
                     title="Noise2Noise"
-                    description="Resultados del modelo Noise2Noise para eliminación de ruido"
+                    description="Modelo de reducción de ruido basado en aprendizaje profundo"
                     samples={noise2noiseSamples}
                     gradient="from-blue-500 to-indigo-600"
                   />
@@ -389,20 +379,9 @@ export default function App() {
 
                 {/* ClearVoiceStudio */}
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">ClearVoiceStudio</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Resultados del modelo ClearVoiceStudio para mejora de voz</p>
-                    </div>
-                  </div>
                   <NoiseModelSection
                     title="ClearVoiceStudio"
-                    description="Resultados del modelo ClearVoiceStudio para clarificación de voz"
+                    description="Resultados del modelo ClearVoiceStudio para mejora de voz"
                     samples={clearVoiceSamples}
                     gradient="from-emerald-500 to-teal-600"
                   />
@@ -431,18 +410,9 @@ export default function App() {
               <div className="p-6 md:p-8">
                 {/* AGAIN-VC */}
                 <div className="mb-10">
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">A</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">AGAIN-VC</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Modelo de conversión de voz basado en arquitectura AGAIN</p>
-                    </div>
-                  </div>
                   <CloneModelSection
                     title="AGAIN-VC"
-                    description="Clonación de voz con el modelo AGAIN-VC"
+                    description="Modelo de conversión de voz basado en arquitectura AGAIN"
                     samples={againVcSamples}
                     gradient="from-violet-500 to-purple-600"
                   />
@@ -452,18 +422,9 @@ export default function App() {
 
                 {/* StarGAN VC */}
                 <div className="mb-10">
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">S</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">StarGAN VC</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Modelo de conversión de voz StarGAN v2</p>
-                    </div>
-                  </div>
                   <CloneModelSection
                     title="StarGAN VC"
-                    description="Clonación de voz con el modelo StarGAN VC"
+                    description="Modelo de conversión de voz StarGAN v2"
                     samples={starganVcSamples}
                     gradient="from-pink-500 to-rose-600"
                   />
@@ -473,18 +434,9 @@ export default function App() {
 
                 {/* Seed VC */}
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-fuchsia-500 to-pink-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">S</span>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Seed VC</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Modelo de conversión de voz Seed VC</p>
-                    </div>
-                  </div>
                   <CloneModelSection
                     title="Seed VC"
-                    description="Clonación de voz con el modelo Seed VC"
+                    description="Modelo de conversión de voz Seed VC"
                     samples={seedVcSamples}
                     gradient="from-fuchsia-500 to-pink-600"
                   />
@@ -511,21 +463,9 @@ export default function App() {
               </div>
 
               <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Resemble Enhance</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Mejora de audio clonado con Resemble Enhance</p>
-                  </div>
-                </div>
-
                 <EnhanceModelSection
                   title="Resemble Enhance"
-                  description="Audios mejorados con el modelo Resemble Enhance"
+                  description="Mejora de audio clonado con Resemble Enhance"
                   samples={enhancedSamples}
                   gradient="from-amber-500 to-orange-600"
                 />
@@ -551,20 +491,8 @@ export default function App() {
               </div>
 
               <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200 dark:border-gray-700">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Audiolibro Clonado</h3>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Fragmentos de audiolibro con voz clonada</p>
-                  </div>
-                </div>
-
                 <CloneModelSection
-                  title="Audiolibro"
+                  title="Audiolibro Clonado"
                   description="Clonación de voz aplicada a audiolibros"
                   samples={audiobookSamples}
                   gradient="from-emerald-500 to-teal-600"
